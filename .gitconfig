@@ -1,0 +1,9 @@
+[user]
+	name = Heidar Bernhardsson
+	email = heidarbn@gmail.com
+
+[core]
+	editor = nvim
+
+[push]
+	default = current
