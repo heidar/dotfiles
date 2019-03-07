@@ -52,6 +52,6 @@ alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
-chruby ruby-2.6.0
+chruby ruby-2.6.1
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
