@@ -17,9 +17,6 @@ call plug#begin('~/.config/nvim/plugged')
   " Linter
   Plug 'w0rp/ale'
 
-  " Tag management
-  Plug 'ludovicchabant/vim-gutentags'
-
   " ctrl+p
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
@@ -38,6 +35,12 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Editorconfig support
   Plug 'editorconfig/editorconfig-vim'
+
+  " Autocomplete
+  Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install()}}
+
+  " Tag management
+  Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " Colorscheme
@@ -106,9 +109,6 @@ nnoremap <leader>h :noh<cr>
 " FZF - Finding files like ctrlp
 nnoremap <c-p> :FZF<cr>
 nnoremap <c-i> :Ag<cr>
-
-" Set tab completion to use tags
-let b:vcm_tab_complete = 'tags'
 
 " Ale
 let g:ale_lint_on_enter = 0
