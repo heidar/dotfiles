@@ -41,6 +41,9 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Tag management
   Plug 'ludovicchabant/vim-gutentags'
+
+  " Markdown magic
+  Plug 'plasticboy/vim-markdown'
 call plug#end()
 
 " Colorscheme
