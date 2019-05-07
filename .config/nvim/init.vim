@@ -11,6 +11,9 @@ call plug#begin('~/.config/nvim/plugged')
   " Shortcuts for commenting
   Plug 'tpope/vim-commentary'
 
+  " Improve Ruby support
+  Plug 'vim-ruby/vim-ruby'
+
   " Plugin for editing Rails applications
   Plug 'tpope/vim-rails'
 
@@ -44,6 +47,18 @@ call plug#begin('~/.config/nvim/plugged')
 
   " Markdown magic
   Plug 'plasticboy/vim-markdown'
+
+  " JavaScript syntax highlighting
+  Plug 'pangloss/vim-javascript'
+
+  " JSX syntax highlighting
+  Plug 'mxw/vim-jsx'
+
+  " JSON formatting
+  Plug 'elzr/vim-json'
+
+  " Emmet
+  Plug 'mattn/emmet-vim'
 call plug#end()
 
 " Colorscheme
