@@ -38,6 +38,7 @@ zplug plugins/ruby, from:oh-my-zsh
 zplug plugins/rails, from:oh-my-zsh
 zplug akarzim/zsh-docker-aliases
 zplug tmuxinator/tmuxinator, use: completion/tmuxinator.zsh
+zplug plugins/tmuxinator, from:oh-my-zsh
 
 zplug load
 
