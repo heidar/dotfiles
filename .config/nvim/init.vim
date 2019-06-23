@@ -118,9 +118,6 @@ let g:airline#extensions#tabline#buffer_idx_mode = 1
 let mapleader = "\<Space>"
 nnoremap <Leader>w :w<CR>
 
-" Disable mouse
-set mouse=
-
 " Binding to unhighlight search
 nnoremap <leader>h :noh<cr>
 
@@ -140,3 +137,6 @@ highlight clear ALEWarningSign
 
 hi ALEErrorSign   guibg=#501010 ctermbg=52 guifg=#FD3F44 ctermfg=203
 hi ALEWarningSign guibg=#503010 ctermbg=58 guifg=#FF9800 ctermfg=208
+
+" Mouse scrolling
+set mouse=a
