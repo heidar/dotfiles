@@ -7,3 +7,6 @@
 
 [push]
 	default = current
+
+[diff "ansible-vault"]
+	textconv = ansible-vault view
