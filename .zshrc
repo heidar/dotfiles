@@ -50,6 +50,8 @@ alias vim=nvim
 alias vi=nvim
 alias v=nvim
 alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias tx='tmuxinator'
+alias txx'tmuxinator stop'
 
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
