@@ -1,6 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
   " Gruvbox theme
-  Plug 'morhetz/gruvbox'
+  Plug 'gruvbox-community/gruvbox'
 
   " Airline statusbar
   Plug 'bling/vim-airline'
