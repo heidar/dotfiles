@@ -3,7 +3,7 @@
 	email = heidarbn@gmail.com
 
 [core]
-	editor = nvim
+	editor = code --wait
 
 [push]
 	default = current
