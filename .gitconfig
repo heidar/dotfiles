@@ -1,12 +1,9 @@
 [user]
 	name = Heidar Bernhardsson
-	email = heidarbn@gmail.com
+	email = heidar@hey.com
 
 [core]
-	editor = code --wait
+	editor = nvim
 
 [push]
 	default = current
-
-[diff "ansible-vault"]
-	textconv = ansible-vault view
