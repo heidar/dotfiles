@@ -61,6 +61,10 @@ zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_moj # load ssh keys
 export NVM_LAZY_LOAD=true                                  # load nvm when it is used rather than on startup
 zinit light lukechilds/zsh-nvm                             # manage and load nvm
 zinit snippet OMZP::rbenv                                  # load rbenv
+zinit ice svn                                              # needed to download all files in the git plugin below
+zinit snippet PZT::modules/git                             # git aliases
+zinit cdclear -q                                           # <- forget completions provided up to this moment
+zinit snippet OMZP::rails                                  # rails aliases
 
 # auto completions
 autoload -Uz compinit
