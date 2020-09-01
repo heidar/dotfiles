@@ -35,6 +35,8 @@ setopt HIST_BEEP
 export PATH="/usr/local/opt/libressl/bin:$PATH"
 # use newer curl instead of system
 export PATH="/usr/local/opt/curl/bin:$PATH"
+# add vscode to path
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
 # set the editor to neovim
 EDITOR="nvim"
