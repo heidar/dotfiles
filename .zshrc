@@ -38,9 +38,11 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 # add vscode to path
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
-# set the editor to neovim
-EDITOR="nvim"
+# set the editor to vim
+EDITOR="vim"
 
+# use neovim instead of vim
+alias vim="nvim"
 # make ls output colorful
 alias ls="ls -G"
 # manage dotfiles with git
