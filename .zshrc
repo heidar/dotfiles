@@ -46,6 +46,10 @@ alias ls="ls -G"
 # manage dotfiles with git
 alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
+# go paths
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
 # added by zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -96,6 +100,8 @@ zinit snippet PZT::modules/git
 zinit cdclear -q
 # rails aliases
 zinit snippet OMZP::rails
+# open-pr shortcut
+zinit light caarlos0-graveyard/zsh-open-pr
 
 # auto completions
 autoload -Uz compinit
