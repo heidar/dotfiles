@@ -88,7 +88,7 @@ zinit snippet OMZP::colored-man-pages
 # auto start ssh-agent
 zinit snippet OMZP::ssh-agent
 # load ssh keys
-zstyle :omz:plugins:ssh-agent identities id_rsa id_rsa_moj
+zstyle :omz:plugins:ssh-agent identities <private key>
 # load nvm when it is used rather than on startup
 export NVM_LAZY_LOAD=true
 # manage and load nvm
