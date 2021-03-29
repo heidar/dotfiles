@@ -33,8 +33,8 @@ setopt HIST_BEEP
 
 # use newer curl instead of system
 export PATH="/usr/local/opt/curl/bin:$PATH"
-# add vscode to path
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
+# use postgres 9.6
+export PATH=$PATH:/Applications/Postgres.app/Contents/Versions/9.6/bin
 
 # set the editor to nvim
 EDITOR="nvim"
