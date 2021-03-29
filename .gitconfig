@@ -1,0 +1,10 @@
+[user]
+	name = Heidar Bernhardsson
+	email = heidar.bernhardsson@deliveroo.co.uk
+[core]
+	editor = nvim
+[push]
+	default = current
+[pull]
+	rebase = false
+
