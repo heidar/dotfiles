@@ -31,8 +31,6 @@ setopt HIST_VERIFY
 # beep when accessing nonexistent history
 setopt HIST_BEEP
 
-# use newer libressl instead of system
-export PATH="/usr/local/opt/libressl/bin:$PATH"
 # use newer curl instead of system
 export PATH="/usr/local/opt/curl/bin:$PATH"
 # add vscode to path
