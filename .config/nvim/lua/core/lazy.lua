@@ -2,6 +2,7 @@
 
 -- set Leader to spacebar for things to work
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 -- install lazy if it isn't present
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
