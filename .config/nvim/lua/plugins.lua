@@ -72,4 +72,7 @@ return require('packer').startup(function()
 
     -- ledger
     use 'ledger/vim-ledger'
+
+    -- elixir
+    use 'elixir-editors/vim-elixir'
 end)

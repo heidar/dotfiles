@@ -116,13 +116,31 @@ end
 
 
 local servers = { 'rust_analyzer', 'gopls', 'solargraph' }
+lspconfig = require('lspconfig')
 for _, lsp in pairs(servers) do
-    require('lspconfig')[lsp].setup { on_attach = on_attach }
+    lspconfig[lsp].setup { on_attach = on_attach }
 end
 
-require'lspconfig'.elixirls.setup{
-    cmd = { '/usr/lib/elixir-ls/language_server.sh' };
-}
+-- elixir-ls
+local path_to_elixirls = vim.fn.expand('/usr/lib/elixir-ls/language_server.sh')
+lspconfig.elixirls.setup({
+    cmd = { path_to_elixirls },
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = {
+        elixirLS = {
+            -- I choose to disable dialyzer for personal reasons, but
+            -- I would suggest you also disable it unless you are well
+            -- aquainted with dialzyer and know how to use it.
+            dialyzerEnabled = false,
+            -- I also choose to turn off the auto dep fetching feature.
+            -- It often get's into a weird state that requires deleting
+            -- the .elixir_ls directory and restarting your editor.
+            fetchDeps = false
+        }
+    }
+})
+
 -- auto complete
 vim.g.coq_settings = { auto_start = 'shut-up' }
 require('coq')
