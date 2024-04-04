@@ -2,6 +2,7 @@
 
 return {
 	"mbbill/undotree",
+	event = "InsertEnter",
 	config = function()
 		local wk = require("which-key")
 		wk.register({

@@ -2,8 +2,8 @@
 
 return {
 	"stevearc/dressing.nvim",
-	opts = {},
 	event = "VeryLazy",
+	opts = {},
 	config = function()
 		-- set border for lsp floating windows
 		local border = "rounded"

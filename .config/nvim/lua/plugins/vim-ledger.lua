@@ -2,4 +2,5 @@
 
 return {
 	"ledger/vim-ledger",
+	event = "BufEnter",
 }

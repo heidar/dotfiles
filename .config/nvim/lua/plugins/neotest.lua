@@ -2,6 +2,7 @@
 
 return {
 	"nvim-neotest/neotest",
+	event = "BufEnter",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-treesitter/nvim-treesitter",

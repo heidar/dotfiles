@@ -2,7 +2,7 @@
 
 return {
 	"lewis6991/gitsigns.nvim",
-	event = "VeryLazy",
+	event = "BufRead",
 	config = function()
 		local gs = require("gitsigns")
 		local wk = require("which-key")

@@ -2,6 +2,7 @@
 
 return {
 	"mhartington/formatter.nvim",
+	event = "BufEnter",
 	config = function()
 		require("formatter").setup({
 			-- languages to have formatting for

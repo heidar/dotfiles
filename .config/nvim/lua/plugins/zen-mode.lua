@@ -2,6 +2,7 @@
 
 return {
 	"folke/zen-mode.nvim",
+	event = "BufEnter",
 	opts = {},
 	config = function()
 		local wk = require("which-key")

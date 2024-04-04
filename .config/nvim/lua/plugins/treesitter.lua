@@ -2,6 +2,7 @@
 
 return {
 	"nvim-treesitter/nvim-treesitter",
+	event = "VimEnter",
 	build = ":TSUpdate",
 	config = function()
 		local configs = require("nvim-treesitter.configs")

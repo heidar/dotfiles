@@ -2,6 +2,7 @@
 
 return {
 	"olimorris/persisted.nvim",
+	event = "VeryLazy",
 	config = function()
 		require("persisted").setup()
 		local wk = require("which-key")

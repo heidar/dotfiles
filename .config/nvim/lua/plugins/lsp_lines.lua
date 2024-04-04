@@ -2,6 +2,7 @@
 
 return {
 	"https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+	event = "BufEnter",
 	config = function()
 		-- diagnostic signs
 		local signs = { Error = "", Warn = "", Hint = "󰌵", Info = "" }

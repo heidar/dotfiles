@@ -2,7 +2,7 @@
 
 return {
 	"akinsho/bufferline.nvim",
-	version = "*",
+	event = "VimEnter",
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons" },
 		{ "folke/which-key.nvim" },
