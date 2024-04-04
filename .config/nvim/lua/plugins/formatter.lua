@@ -8,7 +8,9 @@ return {
 			filetype = {
 				go = {
 					-- gofmt for go
-					require("formatter.filetypes.go").goftm,
+					require("formatter.filetypes.go").gofmt,
+					-- goimports for go
+					require("formatter.filetypes.go").goimports,
 				},
 				lua = {
 					-- stylua for lua
