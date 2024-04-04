@@ -30,7 +30,7 @@ xrdb -load ~/.Xresources
 xsetroot -cursor_name left_ptr
 
 # launch polybar
-~/.config/polybar/launch.sh
+~/.config/polybar/launch.sh internal
 
 # wallpaper
 feh --bg-scale ~/.wallpaper.png
