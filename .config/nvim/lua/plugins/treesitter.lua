@@ -9,6 +9,7 @@ return {
 		configs.setup({
 			-- list of parses that are desired
 			ensure_installed = {
+				"beancount",
 				"go",
 				"git_rebase",
 				"gitcommit",
