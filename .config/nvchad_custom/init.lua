@@ -7,3 +7,7 @@ vim.o.relativenumber = true
 
 -- colorcolumn
 vim.o.cc = "80"
+
+-- indenting
+vim.o.tabstop = 8
+
