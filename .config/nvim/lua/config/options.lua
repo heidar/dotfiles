@@ -7,8 +7,6 @@ vim.cmd.colorscheme("catppuccin")
 vim.wo.wrap = false
 
 local options = {
-	list = true, -- show empty characters
-	listchars = "tab:‣ ,trail:·,nbsp:·,precedes:←,extends:→", -- set characters
 	number = true, -- show line numbers
 	relativenumber = true, -- show relative line numbers
 	clipboard = "unnamedplus", -- copy to clipboard
