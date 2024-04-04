@@ -67,8 +67,8 @@ vim.o.spelllang = 'en'
 map('n', '<Leader>sp', '<CMD>set spell!<CR>', options)
 
 -- bar navigation
-map('n', '<C-p>', ':BufferPrevious<CR>', options)
-map('n', '<C-n>', ':BufferNext<CR>', options)
+map('n', '<Leader>[', ':BufferPrevious<CR>', options)
+map('n', '<Leader>]', ':BufferNext<CR>', options)
 
 -- bar close
 map('n', '<Leader>w', ':BufferClose<CR>', options)
