@@ -20,6 +20,7 @@ return {
 				"lua",
 				"make",
 				"ruby",
+				"rust",
 				"sql",
 				"todotxt",
 				"yaml",

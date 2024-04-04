@@ -17,6 +17,10 @@ return {
 					-- stylua for lua
 					require("formatter.filetypes.lua").stylua,
 				},
+				rust = {
+					-- rustfmt for rust
+					require("formatter.filetypes.rust").rustfmt,
+				},
 				ruby = {
 					-- rubocop for ruby
 					require("formatter.filetypes.ruby").rubocop,

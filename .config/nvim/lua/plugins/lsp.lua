@@ -49,6 +49,7 @@ return {
 			ensure_installed = {
 				"gopls",
 				"lua_ls",
+				"rust_analyzer",
 				"solargraph",
 			},
 		})
@@ -139,9 +140,10 @@ return {
 		-- configure language servers
 		local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
 		lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
-		lspconfig.gopls.setup({ capabilities = capabilities })
-		lspconfig.solargraph.setup({ capabilities = capabilities })
 		lspconfig.golangci_lint_ls.setup({ capabilities = capabilities })
+		lspconfig.gopls.setup({ capabilities = capabilities })
+		lspconfig.rust_analyzer.setup({ capabilities = capabilities })
+		lspconfig.solargraph.setup({ capabilities = capabilities })
 
 		-- mason keybind
 		wk.register({
