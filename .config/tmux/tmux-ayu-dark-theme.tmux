@@ -77,11 +77,10 @@ set "@prefix_highlight_bg" "$ayu_dark_green"
 set "@prefix_highlight_copy_mode_attr" "fg=$ayu_dark_black,bg=$ayu_dark_green"
 set "@prefix_highlight_output_prefix" "  "
 
-status_widgets=$(get "@ayu_dark_widgets")
 time_format=$(get "@ayu_dark_time_format" "%R")
 date_format=$(get "@ayu_dark_date_format" "%d/%m/%Y")
 
-set "status-right" "#[fg=$ayu_dark_white,bg=$ayu_dark_black,nounderscore,noitalics]${time_format}  ${date_format} #[fg=$ayu_dark_visual_grey,bg=$ayu_dark_black]#[fg=$ayu_dark_visual_grey,bg=$ayu_dark_visual_grey]#[fg=$ayu_dark_white, bg=$ayu_dark_visual_grey]${status_widgets} #[fg=$ayu_dark_green,bg=$ayu_dark_visual_grey,nobold,nounderscore,noitalics]#[fg=$ayu_dark_black,bg=$ayu_dark_green,bold] #h #[fg=$ayu_dark_yellow, bg=$ayu_dark_green]#[fg=$ayu_dark_red,bg=$ayu_dark_yellow]"
+set "status-right" "#[fg=$ayu_dark_white,bg=$ayu_dark_black,nounderscore,noitalics]${time_format}  ${date_format} #[fg=$ayu_dark_green,bg=$ayu_dark_black,nobold,nounderscore,noitalics]#[fg=$ayu_dark_visual_grey,bg=$ayu_dark_green,bold] #h "
 set "status-left" "#[fg=$ayu_dark_black,bg=$ayu_dark_green,bold] #S #{prefix_highlight}#[fg=$ayu_dark_green,bg=$ayu_dark_black,nobold,nounderscore,noitalics]"
 
 set "window-status-format" "#[fg=$ayu_dark_black,bg=$ayu_dark_black,nobold,nounderscore,noitalics]#[fg=$ayu_dark_white,bg=$ayu_dark_black] #I  #W #[fg=$ayu_dark_black,bg=$ayu_dark_black,nobold,nounderscore,noitalics]"
