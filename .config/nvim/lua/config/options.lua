@@ -5,43 +5,29 @@ local set = vim.o
 -- set the color scheme
 vim.cmd.colorscheme("catppuccin")
 
--- show empty characters
-set.list = true
-set.listchars = "tab:‣ ,trail:·,nbsp:·,precedes:←,extends:→"
-vim.cmd([[match errorMsg /\s\+$/]])
-
--- show relative line numbers
-set.number = true
-set.relativenumber = true
-
--- copy to clipboard
-set.clipboard = "unnamedplus"
-
--- spellcheck language
-set.spelllang = "en"
-
--- indentation settings
-set.tabstop = 4
-set.softtabstop = 4
-set.shiftwidth = 4
-set.expandtab = true
-set.smartindent = true
-
--- search settings
-set.hlsearch = false
-set.incsearch = true
-set.smartcase = true
-
--- keep cursor off the bottom
-set.scrolloff = 8
-set.sidescrolloff = 8
-set.signcolumn = "yes"
-
--- faster update time
-set.updatetime = 50
-
--- color 80th column
-set.colorcolumn = "80"
-
 -- wrapping
 vim.wo.wrap = false
+
+local options = {
+	list = true, -- show empty characters
+	listchars = "tab:‣ ,trail:·,nbsp:·,precedes:←,extends:→", -- set characters
+	number = true, -- show line numbers
+	relativenumber = true, -- show relative line numbers
+	clipboard = "unnamedplus", -- copy to clipboard
+	spelllang = "en", -- spellcheck language
+	tabstop = 4, -- number of spaces a tab counts for
+	softtabstop = 4, -- number of spaces a tab counts for
+	shiftwidth = 4, -- set indentation width
+	smartindent = true, -- turn on smartindent
+	hlsearch = false, -- highlight all matches on previous search pattern
+	smartcase = true, -- smart case
+	scrolloff = 8, -- keep cursor off the bottom
+	sidescrolloff = 8, -- keep cursor off the side
+	signcolumn = "yes", -- always show signcolumn
+	updatetime = 50, -- faster update time
+	colorcolumn = "80", -- color 80th column
+}
+
+for k, v in pairs(options) do
+	vim.opt[k] = v
+end
