@@ -1,2 +1,2 @@
-xautolock -time 30 -locker slock &
+xss-lock -- slock &
 bspwm
