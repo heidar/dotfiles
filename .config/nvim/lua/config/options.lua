@@ -1,7 +1,5 @@
 -- this file contains all custom options
 
-local set = vim.o
-
 -- set the color scheme
 vim.cmd.colorscheme("catppuccin")
 
