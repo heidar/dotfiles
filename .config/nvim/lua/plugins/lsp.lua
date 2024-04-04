@@ -43,6 +43,20 @@ return {
 		lsp.preset("recommended")
 		lsp.extend_cmp()
 
+		-- set border for lsp floating windows
+		local border = "single"
+		local handlers = vim.lsp.handlers
+		handlers["textDocument/hover"] = vim.lsp.with(handlers.hover, {
+			border = border,
+		})
+		handlers["textDocument/signatureHelp"] = vim.lsp.with(handlers.signature_help, {
+			border = border,
+		})
+		vim.diagnostic.config({
+			float = { border = border },
+		})
+
+		-- ensure these language servers are installed
 		require("mason-lspconfig").setup({
 			ensure_installed = {
 				"gopls",
@@ -61,7 +75,17 @@ return {
 					require("luasnip").lsp_expand(args.body)
 				end,
 			},
-			window = {},
+			window = {
+				completion = {
+					border = "rounded",
+				},
+				documentation = {
+					border = "rounded",
+				},
+				hover = {
+					border = "rounded",
+				},
+			},
 			formatting = {
 				format = require("lspkind").cmp_format({}),
 			},
