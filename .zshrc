@@ -43,7 +43,7 @@ export PATH="$PATH:$GOPATH/bin"
 
 # ruby
 zinit snippet OMZP::rbenv
-rbenv global 3.2.0
+rbenv global 3.2.3
 
 # node
 zinit light lukechilds/zsh-nvm
