@@ -19,6 +19,30 @@ return {
 		transparent_background = true,
 
 		-- integrations for other plugins
-		integrations = {},
+		integrations = {
+			cmp = true,
+			native_lsp = {
+				enabled = true,
+				virtual_text = {
+					errors = { "italic" },
+					hints = { "italic" },
+					warnings = { "italic" },
+					information = { "italic" },
+				},
+				underlines = {
+					errors = { "underline" },
+					hints = { "underline" },
+					warnings = { "underline" },
+					information = { "underline" },
+				},
+				inlay_hints = {
+					background = true,
+				},
+			},
+			treesitter = true,
+			telescope = {
+				enabled = true,
+			},
+		},
 	},
 }
