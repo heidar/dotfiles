@@ -28,7 +28,7 @@ return {
 						["<C-f>"] = actions.preview_scrolling_down,
 					},
 				},
-				file_ignore_patterns = { "node_modules" },
+				file_ignore_patterns = { "node_modules", "vendor" },
 			},
 		})
 
