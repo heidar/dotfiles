@@ -11,10 +11,13 @@ return require('packer').startup(function()
     use 'xiyaowong/nvim-transparent'
 
     -- icons
-    use 'kyazdani42/nvim-web-devicons'
+    use 'nvim-tree/nvim-web-devicons'
 
     -- dependency for many packages
     use 'nvim-lua/plenary.nvim'
+
+    -- treesitter
+    use{ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
     -- file finder
     use 'nvim-telescope/telescope.nvim'

@@ -35,14 +35,13 @@ vim.o.cc = '80'
 vim.o.termguicolors = true
 vim.o.background    = 'dark'
 vim.cmd([[colorscheme gruvbox]])
+vim.cmd([[syntax on]])
 
 -- transparency
 require('transparent').setup({ enable = true })
 
 -- copy to clipboard
-vim.cmd [[
-    set clipboard+=unnamedplus
-]]
+vim.cmd [[set clipboard+=unnamedplus]]
 
 -- file finder
 require('telescope').setup{
@@ -115,26 +114,34 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<Leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+
 local servers = { 'rust_analyzer', 'gopls', 'solargraph' }
 for _, lsp in pairs(servers) do
     require('lspconfig')[lsp].setup { on_attach = on_attach }
 end
 
+require'lspconfig'.elixirls.setup{
+    cmd = { '/usr/lib/elixir-ls/language_server.sh' };
+}
 -- auto complete
 vim.g.coq_settings = { auto_start = 'shut-up' }
 require('coq')
 
 -- auto pairs
+local remap = vim.api.nvim_set_keymap
 local npairs = require('nvim-autopairs')
+
 npairs.setup({ map_bs = false, map_cr = false })
+
 vim.g.coq_settings = { keymap = { recommended = false } }
-auto_pair_options = { expr = true, noremap = true }
 
-map('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], auto_pair_options)
-map('i', '<c-c>', [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], auto_pair_options)
-map('i', '<tab>', [[pumvisible() ? "<c-n>" : "<tab>"]], auto_pair_options)
-map('i', '<s-tab>', [[pumvisible() ? "<c-p>" : "<bs>"]], auto_pair_options)
+-- these mappings are coq recommended mappings unrelated to nvim-autopairs
+remap('i', '<esc>', [[pumvisible() ? "<c-e><esc>" : "<esc>"]], { expr = true, noremap = true })
+remap('i', '<c-c>', [[pumvisible() ? "<c-e><c-c>" : "<c-c>"]], { expr = true, noremap = true })
+remap('i', '<tab>', [[pumvisible() ? "<c-n>" : "<tab>"]], { expr = true, noremap = true })
+remap('i', '<s-tab>', [[pumvisible() ? "<c-p>" : "<bs>"]], { expr = true, noremap = true })
 
+-- skip it, if you use another global object
 _G.MUtils= {}
 
 MUtils.CR = function()
@@ -148,7 +155,7 @@ MUtils.CR = function()
         return npairs.autopairs_cr()
     end
 end
-map('i', '<cr>', 'v:lua.MUtils.CR()', auto_pair_options)
+remap('i', '<cr>', 'v:lua.MUtils.CR()', { expr = true, noremap = true })
 
 MUtils.BS = function()
     if vim.fn.pumvisible() ~= 0 and vim.fn.complete_info({ 'mode' }).mode == 'eval' then
@@ -157,13 +164,13 @@ MUtils.BS = function()
         return npairs.autopairs_bs()
     end
 end
-map('i', '<bs>', 'v:lua.MUtils.BS()', auto_pair_options)
+remap('i', '<bs>', 'v:lua.MUtils.BS()', { expr = true, noremap = true })
 
 -- formatting
 vim.cmd[[
 augroup fmt
     autocmd!
-    autocmd BufWritePre * Neoformat
+    autocmd BufWritePre * undojoin | Neoformat
 augroup END
 let g:neoformat_enabled_go = ['gofumpt', 'goimports', 'gofmt']
 ]]
