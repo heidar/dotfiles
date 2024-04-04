@@ -17,7 +17,6 @@ return {
 			defaults = {
 				prompt_prefix = " ",
 				selection_caret = " ",
-				path_display = { "smart" },
 				mappings = {
 					i = {
 						["<CR>"] = actions.select_default,
