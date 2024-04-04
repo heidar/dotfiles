@@ -1,3 +1,5 @@
+-- neovim startup screen plugin
+
 return {
 	"goolord/alpha-nvim",
 	event = "VimEnter",

@@ -1,3 +1,5 @@
+-- plugin for running tests
+
 return {
 	"nvim-neotest/neotest",
 	dependencies = {

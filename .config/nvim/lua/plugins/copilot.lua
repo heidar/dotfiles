@@ -1,3 +1,5 @@
+-- plugin for copilot in neovim
+
 return {
 	"zbirenbaum/copilot.lua",
 	cmd = "Copilot",
