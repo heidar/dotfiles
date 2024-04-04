@@ -8,7 +8,20 @@ return {
 
 		configs.setup({
 			-- list of parses that are desired
-			ensure_installed = { "go", "git_rebase", "gitcommit", "json", "lua", "ruby", "sql", "yaml" },
+			ensure_installed = {
+				"go",
+				"git_rebase",
+				"gitcommit",
+				"html",
+				"javascript",
+				"json",
+				"lua",
+				"make",
+				"ruby",
+				"sql",
+				"todotxt",
+				"yaml",
+			},
 
 			-- install parsers synchronously
 			sync_install = false,
