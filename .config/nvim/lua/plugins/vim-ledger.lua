@@ -1,6 +1,5 @@
 -- tools for working with ledger files
 
 return {
-	"ledger/vim-ledger",
-	event = "BufEnter",
+	"ledger/vim-ledger"
 }
