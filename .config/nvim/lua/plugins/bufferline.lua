@@ -12,9 +12,6 @@ return {
 				style_preset = {
 					bufferline.style_preset.no_italic,
 				},
-				indicator = {
-					style = "none",
-				},
 				modified_icon = "●",
 				show_buffer_close_icons = false,
 				show_close_icon = false,
