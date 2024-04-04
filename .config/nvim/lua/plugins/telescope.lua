@@ -51,6 +51,7 @@ return {
 			["<Leader>fb"] = { builtin.buffers, "Search open buffers" },
 			["<Leader>fo"] = { builtin.oldfiles, "Search recent files" },
 			["<Leader>fg"] = { builtin.live_grep, "Live grep" },
+			["<Leader>fm"] = { builtin.marks, "Search marks" },
 			["<Leader>fs"] = { "<cmd>Telescope persisted<cr>", "Search sessions" },
 			["<Leader>fy"] = { "<cmd>Telescope neoclip<cr>", "Search yanks" },
 		})
