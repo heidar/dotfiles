@@ -44,6 +44,7 @@ return {
 				},
 			},
 			neotest = true,
+			notify = true,
 			treesitter = true,
 			telescope = {
 				enabled = true,
