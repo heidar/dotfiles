@@ -21,6 +21,9 @@ return {
 		-- integrations for other plugins
 		integrations = {
 			cmp = true,
+			fidget = true,
+			gitsigns = true,
+			mason = true,
 			native_lsp = {
 				enabled = true,
 				virtual_text = {
@@ -39,10 +42,12 @@ return {
 					background = true,
 				},
 			},
+			neotest = true,
 			treesitter = true,
 			telescope = {
 				enabled = true,
 			},
+			which_key = true,
 		},
 	},
 }
