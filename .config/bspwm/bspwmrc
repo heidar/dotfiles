@@ -16,6 +16,10 @@ bspc config gapless_monocle      true
 
 # non-bspwm related
 
+# fix for pinentry-gnome3
+# https://bugs.archlinux.org/task/58368
+dbus-update-activation-environment DISPLAY XAUTHORITY
+
 # wallpaper
 feh --bg-scale ~/wallpaper.jpg
 
