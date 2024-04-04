@@ -20,9 +20,6 @@ bspc config gapless_monocle      true
 # https://bugs.archlinux.org/task/58368
 dbus-update-activation-environment DISPLAY XAUTHORITY
 
-# wallpaper
-feh --bg-scale ~/wallpaper.jpg
-
 # xorg compositing
 picom -b -c
 
@@ -31,3 +28,9 @@ xrdb -load ~/.Xresources
 
 # change from ugly cursor when hovering over background
 xsetroot -cursor_name left_ptr
+
+# launch polybar
+~/.config/polybar/launch.sh
+
+# wallpaper
+feh --bg-scale ~/.wallpaper.jpg
