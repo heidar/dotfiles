@@ -33,6 +33,8 @@ return {
 		-- snippets
 		{ "L3MON4D3/LuaSnip" },
 		{ "rafamadriz/friendly-snippets" },
+
+		{ "folke/which-key.nvim" },
 	},
 
 	config = function()

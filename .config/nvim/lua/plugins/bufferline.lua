@@ -3,7 +3,10 @@
 return {
 	"akinsho/bufferline.nvim",
 	version = "*",
-	dependencies = "nvim-tree/nvim-web-devicons",
+	dependencies = {
+		{ "nvim-tree/nvim-web-devicons" },
+		{ "folke/which-key.nvim" },
+	},
 	config = function()
 		local mocha = require("catppuccin.palettes").get_palette("mocha")
 		local bufferline = require("bufferline")
