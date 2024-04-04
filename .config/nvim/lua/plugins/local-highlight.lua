@@ -2,7 +2,7 @@
 
 return {
 	"tzachar/local-highlight.nvim",
-	event = "VeryLazy",
+	event = "BufEnter",
 	config = function()
 		require("local-highlight").setup()
 	end,
