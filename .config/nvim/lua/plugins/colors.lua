@@ -20,6 +20,7 @@ return {
 
 		-- integrations for other plugins
 		integrations = {
+			alpha = true,
 			cmp = true,
 			fidget = true,
 			gitsigns = true,
