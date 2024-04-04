@@ -33,4 +33,4 @@ xsetroot -cursor_name left_ptr
 ~/.config/polybar/launch.sh internal
 
 # wallpaper
-feh --bg-scale ~/.wallpaper.jpg
+feh --bg-fill ~/.wallpaper.jpg
