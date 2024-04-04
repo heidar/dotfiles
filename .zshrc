@@ -18,7 +18,6 @@ zinit light-mode for \
     zdharma-continuum/zinit-annex-bin-gem-node \
     zdharma-continuum/zinit-annex-patch-dl \
     zdharma-continuum/zinit-annex-rust
-
 ### End of Zinit's installer chunk
 
 # local executables
@@ -38,12 +37,12 @@ alias ls="ls --color"
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 # go
-export GOPATH="$HOME/code/go"
+export GOPATH="$HOME/Code/go"
 export PATH="$PATH:$GOPATH/bin"
 
 # ruby
 zinit snippet OMZP::rbenv
-rbenv global 3.2.3
+rbenv global 3.3.0
 
 # node
 zinit light lukechilds/zsh-nvm
@@ -97,4 +96,4 @@ zinit wait lucid for \
         zsh-users/zsh-autosuggestions
 
 # load prompt
-eval "$(starship init zsh)"
+eval "$(starship init zsh)" 
