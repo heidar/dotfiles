@@ -10,10 +10,7 @@ M.treesitter = {
     "go",
   },
   indent = {
-    enable = true,
-    disable = {
-      "python",
-    },
+    enable = false,
   },
 }
 
