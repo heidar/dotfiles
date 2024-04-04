@@ -3,21 +3,47 @@
 return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.2",
-	dependencies = { "nvim-lua/plenary.nvim" },
+	dependencies = {
+		{ "nvim-lua/plenary.nvim" },
+		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		{ "folke/which-key.nvim" },
+	},
 
 	config = function()
+		local actions = require("telescope.actions")
+		local telescope = require("telescope")
+
+		telescope.setup({
+			defaults = {
+				prompt_prefix = " ",
+				selection_caret = " ",
+				path_display = { "smart" },
+				mappings = {
+					i = {
+						["<CR>"] = actions.select_default,
+						["<C-j>"] = actions.move_selection_next,
+						["<C-k>"] = actions.move_selection_previous,
+						["<Down>"] = actions.move_selection_next,
+						["<Up>"] = actions.move_selection_previous,
+						["<C-b>"] = actions.preview_scrolling_up,
+						["<C-f>"] = actions.preview_scrolling_down,
+					},
+				},
+				file_ignore_patterns = { "node_modules" },
+			},
+		})
+
+		telescope.load_extension("fzf")
+
+		-- setup keybinds
 		local builtin = require("telescope.builtin")
-
-		-- use ctrl+p to find files in git
-		vim.keymap.set("n", "<C-p>", builtin.git_files, {})
-
-		-- use leader+ff to find all files
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-
-		-- use leader+fg to live grep the code base
-		vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-
-		-- use leader+fb to search open buffers
-		vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
+		local wk = require("which-key")
+		wk.register({
+			["<Leader>fp"] = { builtin.git_files, "Find project files" },
+			["<Leader>ff"] = { builtin.find_files, "Find files" },
+			["<Leader>fb"] = { builtin.buffers, "Search open buffers" },
+			["<Leader>fo"] = { builtin.oldfiles, "Search recent files" },
+			["<Leader>fg"] = { builtin.live_grep, "Live grep" },
+		})
 	end,
 }
