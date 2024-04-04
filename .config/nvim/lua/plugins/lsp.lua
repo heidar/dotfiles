@@ -105,7 +105,7 @@ return {
 			}),
 		})
 
-		-- TODO: configure lsp mappings
+		-- configure lsp mappings
 		lsp.on_attach(function(_, bufnr)
 			local opts = { buffer = bufnr }
 
