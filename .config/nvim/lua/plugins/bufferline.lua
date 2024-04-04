@@ -28,5 +28,13 @@ return {
 				},
 			}),
 		})
+
+        -- setup keybinds
+		local wk = require("which-key")
+		wk.register({
+			["<Tab>"] = { ":BufferLineCycleNext<CR>", "Next buffer" },
+			["<S-Tab>"] = { ":BufferLineCycleNext<CR>", "Previous buffer" },
+			["<Leader>w"] = { ":bd<CR>", "Close current buffer" },
+		})
 	end,
 }

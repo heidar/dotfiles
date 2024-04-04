@@ -28,8 +28,14 @@ return {
 		require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 		require("lspconfig").gopls.setup({})
 		require("lspconfig").solargraph.setup({})
-        require("lspconfig").golangci_lint_ls.setup({})
+		require("lspconfig").golangci_lint_ls.setup({})
 
 		lsp.setup()
+
+        -- setup keybinds
+		local wk = require("which-key")
+		wk.register({
+			["<Leader>ma"] = { "<cmd>Mason<CR>", "Mason" },
+		})
 	end,
 }
