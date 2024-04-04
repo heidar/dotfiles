@@ -4,6 +4,9 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	event = "VimEnter",
 	build = ":TSUpdate",
+	dependencies = {
+		"RRethy/nvim-treesitter-endwise",
+	},
 	config = function()
 		local configs = require("nvim-treesitter.configs")
 
@@ -38,9 +41,10 @@ return {
 			},
 
 			-- enable these modules
-			indent = { enable = true },
+			indent = { enable = false },
 			autopairs = { enable = true },
 			autotag = { enable = true },
+			endwise = { enable = true },
 		})
 	end,
 }

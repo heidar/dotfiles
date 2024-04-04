@@ -14,6 +14,7 @@ local options = {
 	shiftwidth = 4, -- set indentation width
 	expandtab = true, -- use spaces instead of tab characters
 	smartindent = true, -- turn on smartindent
+	cindent = true, -- autoindent new lines, smarter? (experimental)
 	hlsearch = false, -- highlight all matches on previous search pattern
 	smartcase = true, -- smart case
 	scrolloff = 8, -- keep cursor off the bottom
