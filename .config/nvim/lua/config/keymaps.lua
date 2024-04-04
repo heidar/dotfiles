@@ -1,2 +1,4 @@
+-- this file contains custom keybinds
+
+-- set leader to spacebar
 vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)

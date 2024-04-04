@@ -1,19 +1,27 @@
+-- formatter is for formatting code
+
 return {
 	"mhartington/formatter.nvim",
 	config = function()
 		require("formatter").setup({
+			-- languages to have formatting for
 			filetype = {
 				go = {
-					require("formatter.filetypes.go").stylua,
+					-- gofmt for go
+					require("formatter.filetypes.go").goftm,
 				},
 				lua = {
+					-- stylua for lua
 					require("formatter.filetypes.lua").stylua,
 				},
 				ruby = {
-					require("formatter.filetypes.ruby").stylua,
+					-- rubocop for ruby
+					require("formatter.filetypes.ruby").rubocop,
 				},
 			},
 		})
+
+		-- bind leader + shift + f to format the current file
 		vim.keymap.set("n", "<leader>F", ":FormatWrite<cr>", {})
 	end,
 }
