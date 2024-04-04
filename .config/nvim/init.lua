@@ -128,7 +128,7 @@ map('i', '<bs>', 'v:lua.MUtils.BS()', auto_pair_options)
 vim.cmd[[
 augroup fmt
     autocmd!
-    autocmd BufWritePre * undojoin | Neoformat
+    autocmd BufWritePre * Neoformat
 augroup END
 let g:neoformat_enabled_go = ['gofumpt', 'goimports', 'gofmt']
 ]]
