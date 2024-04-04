@@ -16,7 +16,7 @@ return {
 		telescope.setup({
 			defaults = {
 				prompt_prefix = " ",
-				selection_caret = " ",
+				selection_caret = " ",
 				mappings = {
 					i = {
 						["<CR>"] = actions.select_default,
