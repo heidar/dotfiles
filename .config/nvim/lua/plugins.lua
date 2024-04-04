@@ -66,4 +66,7 @@ return require('packer').startup(function()
 
     -- formatting
     use 'sbdchd/neoformat'
+
+    -- ledger
+    use 'ledger/vim-ledger'
 end)
