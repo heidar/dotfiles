@@ -1,4 +1,4 @@
---file ~/documents/finances/ledger-2023.ldg
+--file ~/documents/finances/ledger-2023-2024.ldg
 --price-db ~/documents/finances/prices.db
 --strict
 --pedantic
