@@ -40,6 +40,14 @@ vim.cmd([[colorscheme gruvbox]])
 require('transparent').setup({ enable = true })
 
 -- file finder
+require('telescope').setup{
+    defaults = {
+        file_ignore_patterns = {
+            "node_modules",
+	    "vendor",
+        }
+    }
+}
 map('n', '<Leader>ff', '<CMD>Telescope find_files<CR>', options)
 map('n', '<Leader>fb', '<CMD>Telescope buffers<CR>', options)
 map('n', '<Leader>fg', '<CMD>Telescope live_grep<CR>', options)
