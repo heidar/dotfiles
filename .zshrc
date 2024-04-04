@@ -38,6 +38,13 @@ zstyle :plugin:history-search-multi-word reset-prompt-protect 1
 alias ls="ls --color"
 zinit snippet OMZP::colored-man-pages
 
+# go
+export GOPATH="$HOME/code/go"
+export PATH="$PATH:$GOPATH/bin"
+
+# ruby
+zinit snippet OMZP::rbenv
+
 # history settings
 export HISTFILE=~/.histfile
 export HISTSIZE=1000000   # the number of items for the internal history list
@@ -70,6 +77,7 @@ zinit cdclear -q
 # autocomplete
 autoload -Uz compinit
 compinit
+_comp_options+=(globdots)
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 
