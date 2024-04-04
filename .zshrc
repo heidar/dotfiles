@@ -21,6 +21,9 @@ zinit light-mode for \
 
 ### End of Zinit's installer chunk
 
+# local executables
+export PATH="$HOME/.local/bin:$PATH"
+
 # use neovim
 export EDITOR=nvim
 alias v=nvim
