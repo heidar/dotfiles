@@ -9,6 +9,7 @@ return {
 		{ "folke/which-key.nvim" },
 		{ "nvim-telescope/telescope-frecency.nvim" },
 		{ "kkharji/sqlite.lua" },
+		"olimorris/persisted.nvim",
 	},
 
 	config = function()
@@ -36,6 +37,7 @@ return {
 
 		telescope.load_extension("fzf")
 		telescope.load_extension("frecency")
+		telescope.load_extension("persisted")
 
 		-- setup keybinds
 		local builtin = require("telescope.builtin")
@@ -46,6 +48,7 @@ return {
 			["<Leader>fb"] = { builtin.buffers, "Search open buffers" },
 			["<Leader>fo"] = { builtin.oldfiles, "Search recent files" },
 			["<Leader>fg"] = { builtin.live_grep, "Live grep" },
+			["<Leader>fs"] = { "<cmd>Telescope persisted<cr>", "Search sessions" },
 		})
 	end,
 }
