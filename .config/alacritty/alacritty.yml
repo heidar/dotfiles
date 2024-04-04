@@ -7,10 +7,10 @@ scrolling:
 font:
   normal:
     family: JetBrainsMono Nerd Font
-    style: Regular
+    style: Bold
   bold:
     family: JetBrainsMono Nerd Font
-    style: Bold
+    style: Extra Bold
   italic:
     family: JetBrainsMono Nerd Font
     style: Italic
