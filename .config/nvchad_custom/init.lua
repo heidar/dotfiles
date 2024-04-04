@@ -9,8 +9,10 @@ vim.o.relativenumber = true
 vim.o.cc = "80"
 
 -- indenting
-vim.cmd [[
+vim.cmd([[
   set tabstop=8
   autocmd Filetype go setlocal noexpandtab shiftwidth=8
-]]
+]])
 
+-- copilot
+vim.g.copilot_assume_mapped = true
