@@ -31,7 +31,10 @@ return {
 		{ "onsails/lspkind.nvim" },
 
 		-- snippets
-		{ "L3MON4D3/LuaSnip" },
+		{
+			"L3MON4D3/LuaSnip",
+			version = "v2.*",
+		},
 		{ "rafamadriz/friendly-snippets" },
 
 		{ "folke/which-key.nvim" },
