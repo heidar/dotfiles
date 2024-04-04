@@ -22,7 +22,7 @@ zinit light-mode for \
 ### End of Zinit's installer chunk
 
 # use neovim
-export EDITOR=vim
+export EDITOR=nvim
 alias v=nvim
 alias vim=nvim
 
@@ -62,7 +62,7 @@ zinit light caarlos0-graveyard/zsh-open-pr
 zinit snippet https://github.com/sorin-ionescu/prezto/blob/master/modules/git/alias.zsh
 
 # manage dotfiles with git
-alias dotfiles='/usr/local/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dotfiles='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # forget completions provided up to this moment
 zinit cdclear -q
