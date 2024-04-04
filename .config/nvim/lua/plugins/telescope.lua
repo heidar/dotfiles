@@ -7,6 +7,8 @@ return {
 		{ "nvim-lua/plenary.nvim" },
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		{ "folke/which-key.nvim" },
+		{ "nvim-telescope/telescope-frecency.nvim" },
+		{ "kkharji/sqlite.lua" },
 	},
 
 	config = function()
@@ -33,6 +35,7 @@ return {
 		})
 
 		telescope.load_extension("fzf")
+		telescope.load_extension("frecency")
 
 		-- setup keybinds
 		local builtin = require("telescope.builtin")
