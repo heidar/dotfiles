@@ -46,17 +46,16 @@ zinit light lukechilds/zsh-nvm
 
 # history settings
 export HISTFILE=~/.histfile
-export HISTSIZE=1000000   # the number of items for the internal history list
-export SAVEHIST=1000000   # maximum number of items for the history file
-setopt HIST_IGNORE_ALL_DUPS  # do not put duplicated command into history list
-setopt HIST_SAVE_NO_DUPS  # do not save duplicated command
-setopt HIST_REDUCE_BLANKS  # remove unnecessary blanks
+export HISTSIZE=1000000 # the number of items for the internal history list
+export SAVEHIST=1000000 # maximum number of items for the history file
+setopt HIST_IGNORE_ALL_DUPS # do not put duplicated command into history list
+setopt HIST_SAVE_NO_DUPS # do not save duplicated command
+setopt HIST_REDUCE_BLANKS # remove unnecessary blanks
 setopt HIST_VERIFY # don't execute immediately upon history expansion
 setopt HIST_IGNORE_SPACE # don't record an entry starting with a space
-setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately
-setopt EXTENDED_HISTORY  # record command start time
+setopt INC_APPEND_HISTORY_TIME # append command to history file immediately
+setopt EXTENDED_HISTORY # record command start time
 setopt SHARE_HISTORY # share history between all sessions
-zinit light zdharma-continuum/history-search-multi-word
 
 # auto start ssh-agent
 zinit snippet OMZP::ssh-agent
@@ -80,17 +79,18 @@ _comp_options+=(globdots)
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 
+# history reverse search
+zinit ice lucid wait'0'
+zinit light zdharma-continuum/history-search-multi-word
+
 # load these plugins last
 zinit wait lucid for \
- atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
- blockf \
-    zsh-users/zsh-completions \
- atload"!_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions
-
-# better reverse search
-zinit light zsh-users/zsh-history-substring-search
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+        zdharma-continuum/fast-syntax-highlighting \
+    blockf \
+        zsh-users/zsh-completions \
+    atload"!_zsh_autosuggest_start" \
+        zsh-users/zsh-autosuggestions
 
 # load prompt
 eval "$(starship init zsh)"
