@@ -41,6 +41,9 @@ export PATH="$PATH:$GOPATH/bin"
 # ruby
 zinit snippet OMZP::rbenv
 
+# node
+zinit light lukechilds/zsh-nvm
+
 # history settings
 export HISTFILE=~/.histfile
 export HISTSIZE=1000000   # the number of items for the internal history list
