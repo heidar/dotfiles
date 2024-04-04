@@ -17,7 +17,7 @@ bspc config gapless_monocle      true
 # non-bspwm related
 
 # wallpaper
-feh --bg-scale ~/pictures/wallpapers/wallpaper3.jpg
+feh --bg-scale ~/wallpaper.jpg
 
 # xorg compositing
 picom --daemon
