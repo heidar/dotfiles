@@ -30,10 +30,6 @@ alias vim=nvim
 bindkey -v
 zinit light jeffreytse/zsh-vi-mode
 
-# syntax highlighting
-zinit light zdharma-continuum/fast-syntax-highlighting
-zstyle :plugin:history-search-multi-word reset-prompt-protect 1
-
 # colors
 alias ls="ls --color"
 zinit snippet OMZP::colored-man-pages
@@ -89,6 +85,9 @@ zinit wait lucid for \
     zsh-users/zsh-completions \
  atload"!_zsh_autosuggest_start" \
     zsh-users/zsh-autosuggestions
+
+# better reverse search
+zinit light zsh-users/zsh-history-substring-search
 
 # load prompt
 eval "$(starship init zsh)"
