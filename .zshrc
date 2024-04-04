@@ -32,7 +32,7 @@ zinit light jeffreytse/zsh-vi-mode
 
 # colors
 alias ls="ls --color"
-zinit snippet OMZP::colored-man-pages
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 # go
 export GOPATH="$HOME/code/go"
