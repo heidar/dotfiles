@@ -16,12 +16,16 @@ map('n', '<C-l>', '<C-w>l', options)
 -- save
 map('n', '<Leader>s', ':w<CR>', options)
 
+-- hide highlight
+map('n', '<Leader>h', ':noh<CR>', options)
+
 -- listchars
 vim.o.list      = true
 vim.o.listchars = "tab:‣ ,trail:·,nbsp:·,precedes:←,extends:→"
 vim.cmd([[match errorMsg /\s\+$/]])
 
 -- line numbers
+vim.o.number         = true
 vim.o.relativenumber = true
 
 -- colorcolumn
