@@ -1,1 +1,2 @@
 browser "firefox %u"
+auto-reload yes
