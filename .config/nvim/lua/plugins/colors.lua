@@ -48,6 +48,10 @@ return {
 			telescope = {
 				enabled = true,
 			},
+			illuminate = {
+				enabled = true,
+				lsp = true,
+			},
 			which_key = true,
 		},
 	},
