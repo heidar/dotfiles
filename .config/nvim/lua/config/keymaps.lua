@@ -16,8 +16,10 @@ register({
 	["<C-Left>"] = { ":vertical resize -2<CR>", "Increase horizontal size" },
 	["<C-Right>"] = { ":vertical resize +2<CR>", "Decrease horizontal size" },
 
-	["<C-f>"] = { "<C-f>zz", "Page down" },
-	["<C-b>"] = { "<C-b>zz", "Page up" },
+        ["<C-f>"] = { "<C-f>zz", "Page down" },
+        ["<C-b>"] = { "<C-b>zz", "Page up" },
+        ["<C-u>"] = { "<C-u>zz", "Half page down" },
+        ["<C-d>"] = { "<C-d>zz", "Half page up" },
 
 	["n"] = { "nzzzv", "Next match" },
 	["N"] = { "Nzzzv", "Previous match" },
