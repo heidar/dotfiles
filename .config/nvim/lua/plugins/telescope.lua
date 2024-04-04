@@ -5,12 +5,13 @@ return {
 	event = "VeryLazy",
 	tag = "0.1.2",
 	dependencies = {
-		{ "nvim-lua/plenary.nvim" },
+		"nvim-lua/plenary.nvim",
 		{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		{ "folke/which-key.nvim" },
-		{ "nvim-telescope/telescope-frecency.nvim" },
-		{ "kkharji/sqlite.lua" },
+		"folke/which-key.nvim",
+		"nvim-telescope/telescope-frecency.nvim",
+		"kkharji/sqlite.lua",
 		"olimorris/persisted.nvim",
+		"AckslD/nvim-neoclip.lua",
 	},
 
 	config = function()
@@ -39,6 +40,7 @@ return {
 		telescope.load_extension("fzf")
 		telescope.load_extension("frecency")
 		telescope.load_extension("persisted")
+		telescope.load_extension("neoclip")
 
 		-- setup keybinds
 		local builtin = require("telescope.builtin")
@@ -50,6 +52,7 @@ return {
 			["<Leader>fo"] = { builtin.oldfiles, "Search recent files" },
 			["<Leader>fg"] = { builtin.live_grep, "Live grep" },
 			["<Leader>fs"] = { "<cmd>Telescope persisted<cr>", "Search sessions" },
+			["<Leader>fy"] = { "<cmd>Telescope neoclip<cr>", "Search yanks" },
 		})
 	end,
 }
