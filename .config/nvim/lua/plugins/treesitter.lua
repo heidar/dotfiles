@@ -33,7 +33,11 @@ return {
 				-- turning this on can cause performance problems and duplicate highlights but this can be enabled for specific languages if needed
 				additional_vim_regex_highlighting = false,
 			},
+
+			-- enable these modules
 			indent = { enable = true },
+			autopairs = { enable = true },
+			autotag = { enable = true },
 		})
 	end,
 }

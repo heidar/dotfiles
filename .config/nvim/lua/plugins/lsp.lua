@@ -32,7 +32,7 @@ return {
 
 		lsp.setup()
 
-        -- setup keybinds
+		-- setup keybinds
 		local wk = require("which-key")
 		wk.register({
 			["<Leader>ma"] = { "<cmd>Mason<CR>", "Mason" },
