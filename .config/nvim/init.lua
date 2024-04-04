@@ -120,9 +120,12 @@ MUtils.BS = function()
 end
 map('i', '<bs>', 'v:lua.MUtils.BS()', auto_pair_options)
 
--- rust
-vim.g.rustfmt_autosave = 1
-
--- go
-vim.g.go_fmt_command  = 'goimports'
-vim.g.go_fmt_autosave = 1
+-- formatting
+vim.cmd[[
+augroup fmt
+    autocmd!
+    autocmd BufWritePre * undojoin | Neoformat
+augroup END
+let g:neoformat_enabled_go = ['gofumpt', 'goimports', 'gofmt']
+]]
+vim.g.go_fmt_autosave = 0

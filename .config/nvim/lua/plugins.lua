@@ -63,4 +63,7 @@ return require('packer').startup(function()
 
     -- rails
     use 'tpope/vim-rails'
+
+    -- formatting
+    use 'sbdchd/neoformat'
 end)
