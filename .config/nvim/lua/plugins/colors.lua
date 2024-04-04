@@ -45,6 +45,7 @@ return {
 			},
 			neotest = true,
 			notify = true,
+			symbols_outline = true,
 			treesitter = true,
 			telescope = {
 				enabled = true,
