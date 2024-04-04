@@ -29,20 +29,6 @@ return {
 		{ "hrsh7th/cmp-nvim-lua" },
 		{ "hrsh7th/cmp-nvim-lsp-signature-help" },
 		{ "onsails/lspkind.nvim" },
-		{
-			"zbirenbaum/copilot.lua",
-			cmd = "Copilot",
-			event = "InsertEnter",
-			config = function()
-				require("copilot").setup({})
-			end,
-		},
-		{
-			"zbirenbaum/copilot-cmp",
-			config = function()
-				require("copilot_cmp").setup()
-			end,
-		},
 
 		-- snippets
 		{ "L3MON4D3/LuaSnip" },
@@ -68,16 +54,7 @@ return {
 
 		-- nvim-cmp setup
 		local cmp = require("cmp")
-
-		-- ensure tab works correctly
-		local has_words_before = function()
-			if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
-				return false
-			end
-			local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-			return col ~= 0 and vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]:match("^%s*$") == nil
-		end
-		local luasnip = require("luasnip")
+		local wk = require("which-key")
 
 		cmp.setup({
 			snippet = {
@@ -87,11 +64,7 @@ return {
 			},
 			window = {},
 			formatting = {
-				format = require("lspkind").cmp_format({
-					mode = "symbol",
-					max_width = 50,
-					symbol_map = { Copilot = "" },
-				}),
+				format = require("lspkind").cmp_format({}),
 			},
 
 			-- keybinds for nvim-cmp
@@ -101,28 +74,6 @@ return {
 				["<C-b>"] = cmp.mapping.scroll_docs(-4),
 				["<C-f>"] = cmp.mapping.scroll_docs(4),
 				["<CR>"] = cmp.mapping.confirm({ select = false }),
-
-				["<Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-					elseif require("luasnip").expand_or_jumpable() then
-						require("luasnip").expand_or_jump()
-					elseif has_words_before() then
-						cmp.complete()
-					else
-						fallback()
-					end
-				end, { "i", "s" }),
-
-				["<S-Tab>"] = cmp.mapping(function(fallback)
-					if cmp.visible() then
-						cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-					elseif luasnip.jumpable(-1) then
-						luasnip.jump(-1)
-					else
-						fallback()
-					end
-				end, { "i", "s" }),
 			}),
 			-- sources for nvim-cmp
 			sources = cmp.config.sources({
@@ -138,9 +89,6 @@ return {
 
 		-- configure lsp mappings
 		lsp.on_attach(function(_, bufnr)
-			local opts = { buffer = bufnr }
-
-			local wk = require("which-key")
 			wk.register({
 				["gd"] = {
 					function()
@@ -172,7 +120,7 @@ return {
 					end,
 					"Rename",
 				},
-			}, opts)
+			}, { buffer = bufnr })
 		end)
 
 		-- configure language servers
@@ -182,8 +130,7 @@ return {
 		lspconfig.solargraph.setup({ capabilities = capabilities })
 		lspconfig.golangci_lint_ls.setup({ capabilities = capabilities })
 
-		-- setup keybinds
-		local wk = require("which-key")
+		-- mason keybind
 		wk.register({
 			["<Leader>ma"] = { "<cmd>Mason<CR>", "Mason" },
 		})
