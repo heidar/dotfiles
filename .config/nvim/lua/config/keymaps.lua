@@ -3,7 +3,7 @@
 local wk = require("which-key")
 local register = wk.register
 
--- insert mode
+-- normal mode
 register({
 	["<leader><leader>"] = { "<cmd>w<CR>", "Quick save" },
 
