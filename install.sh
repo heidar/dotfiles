@@ -30,18 +30,32 @@ echo "==> Symlinking dotfiles"
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
 
-if ! git config --global user.email >/dev/null; then
-  echo
-  echo "⚠️  Git identity not configured."
-  echo "Run:"
-  echo
-  echo "git config --global user.name \"Your Name\""
-  echo "git config --global user.email \"you@example.com\""
-  echo "git config --global user.signingkey \"abcdefg12345\""
-  echo
-fi
-
 echo "==> Starting Syncthing"
 brew services start syncthing
 
-echo "==> Setup complete"
+echo
+echo "✅ Install complete!"
+echo
+echo "⚠️  Some actions need manual completion or verification:"
+
+# Git identity check
+if ! git config --global user.email >/dev/null; then
+  echo "- Set your Git identity:"
+  echo "    git config --global user.name \"Your Name\""
+  echo "    git config --global user.email \"you@example.com\""
+fi
+
+# gh CLI check
+if ! gh auth status >/dev/null 2>&1; then
+  echo "- Authenticate GitHub CLI:"
+  echo "    gh auth login"
+fi
+
+# tailscale check
+if ! tailscale status >/dev/null 2>&1; then
+  echo "- Start Tailscale:"
+  echo "    tailscale up"
+fi
+
+echo
+echo "After completing the above steps, your system should be fully configured."
