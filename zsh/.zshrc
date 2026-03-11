@@ -2,6 +2,12 @@
 export EDITOR=nvim
 bindkey -v
 
+alias ls='eza -alh --group-directories-first'
+alias cat='bat --paging=always'
+alias du='dust'
+alias ps='procs'
+alias ffind='fd'
+
 # 2. rbenv – Ruby version manager
 if command -v rbenv >/dev/null 2>&1; then
   eval "$(rbenv init - zsh)"

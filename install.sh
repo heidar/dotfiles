@@ -17,10 +17,15 @@ echo "==> Updating Homebrew"
 brew update
 
 echo "==> Installing packages from Brewfile"
-brew bundle --file="$DOTFILES_DIR/Brewfile"
+brew bundle --file="$DOTFILES_DIR/install/Brewfile"
 
 echo "==> Applying macOS defaults"
-bash "$DOTFILES_DIR/macos.sh"
+bash "$DOTFILES_DIR/install/macos.sh"
+
+echo "==> Setting up automatic Homebrew updates"
+mkdir -p ~/Library/LaunchAgents
+cp ./install/com.user.brew-maint.plist ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.user.brew-maint.plist
 
 echo "==> Creating config directories"
 mkdir -p ~/.config
@@ -35,27 +40,4 @@ brew services start syncthing
 
 echo
 echo "✅ Install complete!"
-echo
-echo "⚠️  Some actions need manual completion or verification:"
 
-# Git identity check
-if ! git config --global user.email >/dev/null; then
-  echo "- Set your Git identity:"
-  echo "    git config --global user.name \"Your Name\""
-  echo "    git config --global user.email \"you@example.com\""
-fi
-
-# gh CLI check
-if ! gh auth status >/dev/null 2>&1; then
-  echo "- Authenticate GitHub CLI:"
-  echo "    gh auth login"
-fi
-
-# tailscale check
-if ! tailscale status >/dev/null 2>&1; then
-  echo "- Start Tailscale:"
-  echo "    tailscale up"
-fi
-
-echo
-echo "After completing the above steps, your system should be fully configured."

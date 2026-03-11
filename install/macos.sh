@@ -1,0 +1,141 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+echo "Applying macOS defaults, organizing home folder, and cleaning up unused apps..."
+
+##############################
+# Keyboard & Trackpad
+##############################
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool true
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+defaults write NSGlobalDomain com.apple.scrollwheel.scaling -float 2.5
+
+##############################
+# Dock & Desktop
+##############################
+defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock tilesize -int 36
+defaults write com.apple.finder CreateDesktop -bool false
+
+##############################
+# Finder
+##############################
+defaults write NSGlobalDomain AppleShowAllExtensions -bool true
+defaults write com.apple.finder AppleShowAllFiles -bool false
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"
+
+##############################
+# Screenshots & Clipboard
+##############################
+mkdir -p ~/Downloads
+defaults write com.apple.screencapture location -string "${HOME}/Downloads"
+defaults write com.apple.screencapture type -string "png"
+defaults write com.apple.screencapture disable-shadow -bool true
+defaults write com.apple.ClipboardHistoryLogging enable -bool true
+
+##############################
+# Safari (optional / dev-friendly)
+##############################
+defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
+defaults write com.apple.Safari UniversalSearchEnabled -bool false
+defaults write com.apple.Safari IncludeDevelopMenu -bool true
+
+##############################
+# Security & Privacy
+##############################
+defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
+sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
+
+##############################
+# Save & Print Panels
+##############################
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+##############################
+# Text / Autocorrect / Smart Quotes
+##############################
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write -g NSAllowContinuousSpellChecking -bool false
+
+##############################
+# Power & Energy
+##############################
+sudo pmset -c sleep 0
+sudo pmset -c displaysleep 15
+
+##############################
+# Home Folder Cleanup / Work Folders
+##############################
+# Hide unused folders
+chflags hidden ~/Movies ~/Music ~/Public ~/Pictures
+
+# Create work folders
+mkdir -p ~/Code ~/Archive
+
+##############################
+# TextEdit tweaks
+##############################
+# Default to plain text
+defaults write com.apple.TextEdit RichText -int 0
+
+# Ensure new plain text documents use UTF-8
+defaults write com.apple.TextEdit PlainTextEncoding -int 4
+defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
+
+# Set monospaced font (Menlo) for plain text
+defaults write com.apple.TextEdit NSFixedPitchFont -string "Menlo-Regular"
+
+##############################
+# macOS app cleanup
+##############################
+HIDE_APPS=(
+  "/Applications/TV.app"
+  "/Applications/Music.app"
+  "/Applications/Podcasts.app"
+  "/Applications/Books.app"
+  "/Applications/Chess.app"
+  "/Applications/Stocks.app"
+  "/Applications/News.app"
+  "/Applications/Weather.app"
+  "/Applications/Maps.app"
+)
+
+REMOVE_APPS=(
+  "/Applications/GarageBand.app"
+  "/Applications/iMovie.app"
+  "/Applications/Pages.app"
+  "/Applications/Numbers.app"
+  "/Applications/Keynote.app"
+)
+
+for app in "${HIDE_APPS[@]}"; do
+  [ -d "$app" ] && chflags hidden "$app" && echo "Hid $app"
+done
+
+for app in "${REMOVE_APPS[@]}"; do
+  [ -d "$app" ] && sudo rm -rf "$app" && echo "Deleted $app"
+done
+
+# Refresh Launch Services
+/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister \
+  -kill -r -domain local -domain system -domain user
+
+##############################
+# Reload Finder & Dock
+##############################
+killall Finder || true
+killall Dock || true
+
+echo "✅ macOS setup, defaults, folder organization, and app cleanup complete!"
