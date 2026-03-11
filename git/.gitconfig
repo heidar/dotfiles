@@ -1,14 +1,37 @@
-[init]
-  defaultBranch = main
+[core]
+    editor = "zed --wait"
+    autocrlf = input          # consistent line endings
+    excludesfile = ~/.gitignore_global
+    safecrlf = true
+    pager = less -FRSX
 
-[pull]
-  rebase = true
+[color]
+    ui = auto
+
+[alias]
+    st = status
+    co = checkout
+    br = branch
+    cm = commit
+    df = diff
+    gr = grep
+    lg = log --graph --decorate --oneline --abbrev-commit
+    amend = commit --amend --no-edit
+    unstage = reset HEAD --
+    last = log -1 HEAD
 
 [push]
-  autoSetupRemote = true
+    default = simple
+    autoSetupRemote = true
 
-[core]
-  editor = zed
+[pull]
+    rebase = true
+
+[fetch]
+    prune = true
 
 [include]
-  path = ~/.gitconfig.local
+    path = ~/.gitconfig.local   # contains PID or sensitive info
+
+[user]
+    # leave empty here; filled in local config

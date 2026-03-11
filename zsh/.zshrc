@@ -1,28 +1,33 @@
-# 1. Editor & keymap
-export EDITOR=nvim
-bindkey -v
+#!/usr/bin/env zsh
 
+##############################
+# 1️⃣ Editor
+##############################
+export EDITOR=zed
+
+##############################
+# 2️⃣ Modern CLI replacements (interactive only)
+##############################
 alias ls='eza -alh --group-directories-first'
-alias cat='bat --paging=always'
-alias du='dust'
-alias ps='procs'
-alias ffind='fd'
+alias cat='bat --paging=never'
+alias cd='z'
 
-# 2. rbenv – Ruby version manager
-if command -v rbenv >/dev/null 2>&1; then
-  eval "$(rbenv init - zsh)"
-fi
-
-# 3. History (lean, timestamped, deduped)
+##############################
+# 3️⃣ History (lean, timestamped, deduped)
+##############################
 HISTSIZE=200000
 SAVEHIST=$HISTSIZE
-setopt INC_APPEND_HISTORY_TIME HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_VERIFY HIST_IGNORE_SPACE SHARE_HISTORY  # timestamps, deduplication, blanks, verify, space‑ignore, cross‑session
+setopt INC_APPEND_HISTORY_TIME HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_VERIFY HIST_IGNORE_SPACE SHARE_HISTORY
 
-# 4. Antidote plugin manager and core plugins
+##############################
+# 4️⃣ Antidote plugin manager
+##############################
 source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
-antidote load   # reads ~/.zsh_plugins.txt (see below)
+antidote load   # reads ~/.zsh_plugins.txt
 
-# 5. Completion system
+##############################
+# 5️⃣ Completion system
+##############################
 autoload -Uz compinit
 compinit -C               # skip recompiles when possible
 _comp_options+=(globdots) # include dot-files in <Tab> matches
@@ -30,5 +35,17 @@ zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
 bindkey '^F' autosuggest-accept
 
-# 6. Load Starship
-eval "$(starship init zsh)" 
+##############################
+# 6️⃣ zoxide (smart cd)
+##############################
+eval "$(zoxide init zsh)"
+
+##############################
+# 7️⃣ mise (dev environment manager)
+##############################
+eval "$(mise activate zsh)"
+
+##############################
+# 8️⃣ Starship prompt
+##############################
+eval "$(starship init zsh)"
