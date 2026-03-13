@@ -15,6 +15,7 @@ export VISUAL="zed --wait"
 # Modern CLI replacements (interactive only)
 ##############################
 alias ls='eza -alh --group-directories-first'
+alias tree='eza --tree'
 alias cat='bat --paging=never'
 alias cd='z'
 

@@ -5,7 +5,7 @@ set -euo pipefail
 # Paths
 # --------------------------------------
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-BREWFILE="$DOTFILES_DIR/install/Brewfile"
+BREWFILE="$DOTFILES_DIR/homebrew/Brewfile"
 MACOS_SCRIPT="$DOTFILES_DIR/install/macos.sh"
 BREW_PLIST="$DOTFILES_DIR/install/com.user.brew-maint.plist"
 
@@ -55,16 +55,14 @@ else
 fi
 
 # --------------------------------------
-# 5. Install mise global versions
+# 5. Symlink mise config
 # --------------------------------------
-echo "==> Setting mise global versions..."
-eval "$(mise activate bash)"
-
-mise use --global node@lts
-mise use --global python@3.12
-mise use --global ruby@latest
-mise use --global terraform@latest
-mise use --global awscli@latest
+echo "==> Symlinking mise config..."
+mkdir -p ~/.config/mise
+ln -sf "$DOTFILES_DIR/mise/config.toml" ~/.config/mise/config.toml
+mise trust "$DOTFILES_DIR/mise/config.toml"
+mise settings ruby.compile=false
+mise install
 
 # --------------------------------------
 # 6. Apply macOS defaults
@@ -85,6 +83,7 @@ launchctl load ~/Library/LaunchAgents/com.user.brew-maint.plist 2>/dev/null || t
 # --------------------------------------
 echo "==> Creating config directories..."
 mkdir -p ~/.config
+mkdir -p ~/.config/nvim
 
 # --------------------------------------
 # 9. Symlink dotfiles
@@ -94,6 +93,7 @@ ln -sf "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES_DIR/zsh/.zsh_plugins.txt" ~/.zsh_plugins.txt
 ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
 ln -sf "$DOTFILES_DIR/git/.gitignore_global" ~/.gitignore_global
+ln -sf "$DOTFILES_DIR/nvim/init.lua" ~/.config/nvim/init.lua
 
 # --------------------------------------
 # 10. Start services

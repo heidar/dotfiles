@@ -31,8 +31,8 @@ defaults write com.apple.finder CreateDesktop -bool false
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
 defaults write com.apple.finder AppleShowAllFiles -bool false
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
-defaults write com.apple.finder NewWindowTarget -string "PfDe"
-defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/Downloads/"
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+defaults write com.apple.finder NewWindowTargetPath -string "file://${HOME}/"
 
 ##############################
 # Screenshots & Clipboard
@@ -76,7 +76,7 @@ sudo pmset -c displaysleep 15
 ##############################
 # Home Folder Cleanup / Work Folders
 ##############################
-# Hide unused folders
+# Hide unused home folders (these are in ~, not /System, so chflags works)
 chflags hidden ~/Movies ~/Music ~/Public ~/Pictures
 
 # Create work folders
@@ -94,22 +94,13 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 # Set monospaced font (Menlo) for plain text
 defaults write com.apple.TextEdit NSFixedPitchFont -string "Menlo-Regular"
+defaults write com.apple.TextEdit NSFixedPitchFontSize -int 13
 
 ##############################
 # macOS app cleanup
 ##############################
-HIDE_APPS=(
-  "/Applications/TV.app"
-  "/Applications/Music.app"
-  "/Applications/Podcasts.app"
-  "/Applications/Books.app"
-  "/Applications/Chess.app"
-  "/Applications/Stocks.app"
-  "/Applications/News.app"
-  "/Applications/Weather.app"
-  "/Applications/Maps.app"
-)
-
+# Note: apps in /System/Applications are SIP-protected and cannot be removed
+# or hidden via chflags. Hide unwanted system apps manually in Launchpad (long-press → hide).
 REMOVE_APPS=(
   "/Applications/GarageBand.app"
   "/Applications/iMovie.app"
@@ -118,17 +109,13 @@ REMOVE_APPS=(
   "/Applications/Keynote.app"
 )
 
-for app in "${HIDE_APPS[@]}"; do
-  [ -d "$app" ] && chflags hidden "$app" && echo "Hid $app"
-done
-
 for app in "${REMOVE_APPS[@]}"; do
   [ -d "$app" ] && sudo rm -rf "$app" && echo "Deleted $app"
 done
 
 # Refresh Launch Services
 /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister \
-  -kill -r -domain local -domain system -domain user
+  -r -domain local -domain system -domain user
 
 ##############################
 # Reload Finder & Dock

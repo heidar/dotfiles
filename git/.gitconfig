@@ -1,9 +1,14 @@
 [core]
-    editor = "zed --wait"
-    autocrlf = input          # consistent line endings
+    editor = nvim
     excludesfile = ~/.gitignore_global
-    safecrlf = true
-    pager = less -FRSX
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    line-numbers = true
 
 [init]
     defaultBranch = main
@@ -14,8 +19,11 @@
 [diff]
     colorMoved = default
 
-[color]
-    ui = auto
+[filter "lfs"]
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [alias]
     st = status
@@ -39,8 +47,17 @@
 [fetch]
     prune = true
 
+[commit]
+    gpgsign = true
+
+[gpg]
+    format = ssh
+
+[gpg "ssh"]
+    program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
 [include]
-    path = ~/.gitconfig.local   # contains PID or sensitive info
+    path = ~/.gitconfig.local   # contains user, signingkey
 
 [user]
     # leave empty here; filled in local config
