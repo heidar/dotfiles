@@ -4,6 +4,11 @@ set -euo pipefail
 echo "Applying macOS defaults, organizing home folder, and cleaning up unused apps..."
 
 ##############################
+# FileVault check
+##############################
+fdesetup status | grep -q "FileVault is On" || echo "WARNING: FileVault is OFF — enable it in System Settings → Privacy & Security"
+
+##############################
 # Keyboard & Trackpad
 ##############################
 defaults write NSGlobalDomain KeyRepeat -int 1
@@ -37,13 +42,6 @@ defaults write com.apple.screencapture location -string "${HOME}/Downloads"
 defaults write com.apple.screencapture type -string "png"
 defaults write com.apple.screencapture disable-shadow -bool true
 defaults write com.apple.ClipboardHistoryLogging enable -bool true
-
-##############################
-# Safari (optional / dev-friendly)
-##############################
-defaults write com.apple.Safari ShowFullURLInSmartSearchField -bool true
-defaults write com.apple.Safari UniversalSearchEnabled -bool false
-defaults write com.apple.Safari IncludeDevelopMenu -bool true
 
 ##############################
 # Security & Privacy

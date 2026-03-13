@@ -5,6 +5,15 @@
     safecrlf = true
     pager = less -FRSX
 
+[init]
+    defaultBranch = main
+
+[merge]
+    conflictstyle = zdiff3
+
+[diff]
+    colorMoved = default
+
 [color]
     ui = auto
 

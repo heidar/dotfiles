@@ -10,7 +10,7 @@ MACOS_SCRIPT="$DOTFILES_DIR/install/macos.sh"
 BREW_PLIST="$DOTFILES_DIR/install/com.user.brew-maint.plist"
 
 # --------------------------------------
-# 1️⃣ Xcode Command Line Tools
+# 1. Xcode Command Line Tools
 # --------------------------------------
 echo "==> Installing Xcode CLI tools..."
 if ! xcode-select -p >/dev/null 2>&1; then
@@ -18,27 +18,47 @@ if ! xcode-select -p >/dev/null 2>&1; then
 fi
 
 # --------------------------------------
-# 2️⃣ Homebrew
+# 2. Homebrew
 # --------------------------------------
 echo "==> Installing Homebrew..."
 if ! command -v brew >/dev/null 2>&1; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
+# Ensure Homebrew is in PATH for the rest of this script (needed on Apple Silicon fresh installs)
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 echo "==> Updating Homebrew..."
 brew update
 
 # --------------------------------------
-# 3️⃣ Install packages from Brewfile
+# 3. Install packages from Brewfile
+#    --cleanup removes anything not in Brewfile, keeping installs idempotent
 # --------------------------------------
 echo "==> Installing packages from Brewfile..."
-brew bundle --file="$BREWFILE"
+brew bundle --file="$BREWFILE" --cleanup
 
 # --------------------------------------
-# 3️⃣ a Install mise global versions
+# 4. TouchID for sudo (survives macOS updates via sudo_local)
+# --------------------------------------
+echo "==> Enabling TouchID for sudo..."
+SUDO_LOCAL="/etc/pam.d/sudo_local"
+if ! grep -q "pam_tid" "$SUDO_LOCAL" 2>/dev/null; then
+  sudo tee "$SUDO_LOCAL" > /dev/null << 'EOF'
+# sudo_local: local config which survives system updates and is included by sudo
+auth       optional       /opt/homebrew/lib/pam/pam_reattach.so
+auth       sufficient     pam_tid.so
+EOF
+  echo "TouchID sudo enabled."
+else
+  echo "TouchID sudo already configured."
+fi
+
+# --------------------------------------
+# 5. Install mise global versions
 # --------------------------------------
 echo "==> Setting mise global versions..."
-eval "$(mise activate zsh)"  # ensure mise is available
+eval "$(mise activate bash)"
 
 mise use --global node@lts
 mise use --global python@3.12
@@ -47,41 +67,40 @@ mise use --global terraform@latest
 mise use --global awscli@latest
 
 # --------------------------------------
-# 4️⃣ Apply macOS defaults
+# 6. Apply macOS defaults
 # --------------------------------------
 echo "==> Applying macOS defaults..."
 bash "$MACOS_SCRIPT"
 
 # --------------------------------------
-# 5️⃣ Automatic Homebrew updates
+# 7. Automatic Homebrew updates
 # --------------------------------------
 echo "==> Setting up automatic Homebrew updates..."
 mkdir -p ~/Library/LaunchAgents
 cp "$BREW_PLIST" ~/Library/LaunchAgents/
-launchctl load ~/Library/LaunchAgents/com.user.brew-maint.plist
+launchctl load ~/Library/LaunchAgents/com.user.brew-maint.plist 2>/dev/null || true
 
 # --------------------------------------
-# 6️⃣ Create config directories
+# 8. Create config directories
 # --------------------------------------
 echo "==> Creating config directories..."
 mkdir -p ~/.config
 
 # --------------------------------------
-# 7️⃣ Symlink dotfiles
+# 9. Symlink dotfiles
 # --------------------------------------
 echo "==> Symlinking dotfiles..."
 ln -sf "$DOTFILES_DIR/zsh/.zshrc" ~/.zshrc
 ln -sf "$DOTFILES_DIR/zsh/.zsh_plugins.txt" ~/.zsh_plugins.txt
 ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
+ln -sf "$DOTFILES_DIR/git/.gitignore_global" ~/.gitignore_global
 
 # --------------------------------------
-# 8️⃣ Start services
+# 10. Start services
 # --------------------------------------
 echo "==> Starting Syncthing..."
-brew services start syncthing
+brew services start syncthing 2>/dev/null || true
 
 # --------------------------------------
-# ✅ Done
-# --------------------------------------
 echo
-echo "✅ Install complete!"
+echo "Install complete!"
