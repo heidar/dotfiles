@@ -1,16 +1,24 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-echo "Applying macOS defaults, organizing home folder, and cleaning up unused apps..."
+echo "==> Applying macOS defaults..."
 
 ##############################
 # FileVault check
 ##############################
+echo "  -> Checking FileVault..."
 fdesetup status | grep -q "FileVault is On" || echo "WARNING: FileVault is OFF — enable it in System Settings → Privacy & Security"
+
+##############################
+# Appearance
+##############################
+echo "  -> Appearance..."
+defaults write NSGlobalDomain AppleInterfaceStyleSwitchesAutomatically -bool true
 
 ##############################
 # Keyboard & Trackpad
 ##############################
+echo "  -> Keyboard & trackpad..."
 defaults write NSGlobalDomain KeyRepeat -int 1
 defaults write NSGlobalDomain InitialKeyRepeat -int 10
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
@@ -21,9 +29,19 @@ defaults write NSGlobalDomain com.apple.scrollwheel.scaling -float 2.5
 ##############################
 # Dock & Desktop
 ##############################
+echo "  -> Dock & desktop..."
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock tilesize -int 36
-defaults write com.apple.finder CreateDesktop -bool false
+defaults write com.apple.dock show-recents -bool false       # no suggested/recent apps
+defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock mru-spaces -bool false         # don't auto-rearrange spaces
+defaults write com.apple.WindowManager StandardHideWidgets -int 1
+defaults write com.apple.WindowManager HideWidgets -int 1
+defaults write com.apple.WindowManager StageManagerHideWidgets -int 1
+defaults write com.apple.WindowManager StandardHideDesktopIcons -bool true
+defaults write com.apple.WindowManager HideDesktop -bool true
+defaults write com.apple.WindowManager GloballyEnabled -bool false    # Stage Manager off
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool true
 
 ##############################
 # Finder
@@ -44,10 +62,18 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write com.apple.ClipboardHistoryLogging enable -bool true
 
 ##############################
+# Sharing & Connectivity
+##############################
+echo "  -> Sharing & connectivity..."
+defaults write com.apple.coreservices.useractivityd ActivityAdvertisingAllowed -bool false
+defaults write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bool false
+
+##############################
 # Security & Privacy
 ##############################
+echo "  -> Security & privacy..."
 defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults -currentHost write com.apple.screensaver idleTime -int 300
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false
 
@@ -65,13 +91,16 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
 defaults write -g NSAllowContinuousSpellChecking -bool false
 
 ##############################
 # Power & Energy
 ##############################
 sudo pmset -c sleep 0
-sudo pmset -c displaysleep 15
+sudo pmset -c displaysleep 10
+sudo pmset -b displaysleep 10
 
 ##############################
 # Home Folder Cleanup / Work Folders
@@ -99,6 +128,7 @@ defaults write com.apple.TextEdit NSFixedPitchFontSize -int 13
 ##############################
 # macOS app cleanup
 ##############################
+echo "  -> Removing unused Apple apps..."
 # Note: apps in /System/Applications are SIP-protected and cannot be removed
 # or hidden via chflags. Hide unwanted system apps manually in Launchpad (long-press → hide).
 REMOVE_APPS=(
@@ -123,4 +153,4 @@ done
 killall Finder || true
 killall Dock || true
 
-echo "✅ macOS setup, defaults, folder organization, and app cleanup complete!"
+echo "==> macOS defaults applied."

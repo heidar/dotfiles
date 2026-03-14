@@ -1,6 +1,7 @@
 ##############################
 # CLI Tools
 ##############################
+brew "antidote"
 brew "bat"
 brew "bat-extras"
 brew "btop"

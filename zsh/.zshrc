@@ -29,7 +29,7 @@ setopt INC_APPEND_HISTORY_TIME HIST_IGNORE_ALL_DUPS HIST_REDUCE_BLANKS HIST_VERI
 ##############################
 # Antidote plugin manager
 ##############################
-source "${ZDOTDIR:-$HOME}/.antidote/antidote.zsh"
+source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh"
 antidote load   # reads ~/.zsh_plugins.txt
 
 ##############################

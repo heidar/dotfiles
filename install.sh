@@ -32,15 +32,12 @@ echo "==> Updating Homebrew..."
 brew update
 
 # --------------------------------------
-# 3. Install packages from Brewfile
-#    --cleanup removes anything not in Brewfile, keeping installs idempotent
+# 3. TouchID for sudo (survives macOS updates via sudo_local)
+#    Install pam-reattach first so the .so is available before brew bundle runs
 # --------------------------------------
-echo "==> Installing packages from Brewfile..."
-brew bundle --file="$BREWFILE" --cleanup
+echo "==> Installing pam-reattach..."
+brew install pam-reattach
 
-# --------------------------------------
-# 4. TouchID for sudo (survives macOS updates via sudo_local)
-# --------------------------------------
 echo "==> Enabling TouchID for sudo..."
 SUDO_LOCAL="/etc/pam.d/sudo_local"
 if ! grep -q "pam_tid" "$SUDO_LOCAL" 2>/dev/null; then
@@ -53,6 +50,13 @@ EOF
 else
   echo "TouchID sudo already configured."
 fi
+
+# --------------------------------------
+# 4. Install packages from Brewfile
+#    --cleanup removes anything not in Brewfile, keeping installs idempotent
+# --------------------------------------
+echo "==> Installing packages from Brewfile..."
+brew bundle --file="$BREWFILE" --cleanup
 
 # --------------------------------------
 # 5. Symlink mise config
@@ -78,6 +82,11 @@ mkdir -p ~/Library/LaunchAgents
 cp "$BREW_PLIST" ~/Library/LaunchAgents/
 launchctl load ~/Library/LaunchAgents/com.user.brew-maint.plist 2>/dev/null || true
 
+echo "==> Remapping Caps Lock to Control..."
+KEYREMAP_PLIST="$DOTFILES_DIR/install/com.user.keyremap.plist"
+cp "$KEYREMAP_PLIST" ~/Library/LaunchAgents/
+launchctl load ~/Library/LaunchAgents/com.user.keyremap.plist 2>/dev/null || true
+
 # --------------------------------------
 # 8. Create config directories
 # --------------------------------------
@@ -102,5 +111,15 @@ echo "==> Starting Syncthing..."
 brew services start syncthing 2>/dev/null || true
 
 # --------------------------------------
+# 11. Claude (requires Tailscale — skip if unavailable)
+# --------------------------------------
+echo "==> Installing Claude..."
+if [[ -f ~/.local/bin/claude ]]; then
+  echo "Claude already installed, skipping."
+else
+  curl -fsSL https://claude.ai/install.sh | bash || echo "Claude install failed (Tailscale required?) — skipping."
+fi
+
+# --------------------------------------
 echo
-echo "Install complete!"
+echo "Install complete! Restart for all changes to take effect."
