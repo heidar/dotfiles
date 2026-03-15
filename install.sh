@@ -93,6 +93,7 @@ launchctl load ~/Library/LaunchAgents/com.user.keyremap.plist 2>/dev/null || tru
 echo "==> Creating config directories..."
 mkdir -p ~/.config
 mkdir -p ~/.config/nvim
+mkdir -p ~/.config/ghostty
 
 # --------------------------------------
 # 9. Symlink dotfiles
@@ -103,6 +104,7 @@ ln -sf "$DOTFILES_DIR/zsh/.zsh_plugins.txt" ~/.zsh_plugins.txt
 ln -sf "$DOTFILES_DIR/git/.gitconfig" ~/.gitconfig
 ln -sf "$DOTFILES_DIR/git/.gitignore_global" ~/.gitignore_global
 ln -sf "$DOTFILES_DIR/nvim/init.lua" ~/.config/nvim/init.lua
+ln -sf "$DOTFILES_DIR/ghostty/config" ~/.config/ghostty/config
 
 # --------------------------------------
 # 10. Start services

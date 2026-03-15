@@ -1,0 +1,22 @@
+# Font
+font-family = MonaspiceNe Nerd Font
+font-size = 13
+
+# Theme — auto-switches with macOS light/dark mode
+theme = light:Catppuccin Latte,dark:Catppuccin Mocha
+
+# Window
+macos-titlebar-style = tabs
+window-padding-x = 8
+window-padding-y = 8
+
+# QoL
+mouse-hide-while-typing = true
+confirm-close-surface = true
+scrollback-limit = 10000
+shell-integration = detect
+
+# Security / Privacy
+copy-on-select = false
+clipboard-read = ask
+clipboard-paste-protection = true

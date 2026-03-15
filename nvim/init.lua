@@ -20,8 +20,21 @@ require("lazy").setup({
     name = "catppuccin",
     priority = 1000,
     config = function()
-      require("catppuccin").setup({ flavour = "mocha" })
-      vim.cmd.colorscheme("catppuccin-nvim")
+      local function is_dark()
+        local result = vim.fn.system("defaults read -g AppleInterfaceStyle 2>/dev/null")
+        return vim.trim(result) == "Dark"
+      end
+
+      local function apply_theme()
+        local flavour = is_dark() and "mocha" or "latte"
+        require("catppuccin").setup({ flavour = flavour })
+        vim.cmd.colorscheme("catppuccin-" .. flavour)
+      end
+
+      apply_theme()
+
+      -- Re-check every 3 seconds
+      vim.fn.timer_start(3000, apply_theme, { ["repeat"] = -1 })
     end,
   },
 })

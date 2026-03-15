@@ -73,6 +73,7 @@ defaults write com.apple.coreservices.useractivityd ActivityReceivingAllowed -bo
 ##############################
 echo "  -> Security & privacy..."
 defaults write com.apple.screensaver askForPassword -int 1
+defaults write com.apple.screensaver askForPasswordDelay -int 0
 defaults -currentHost write com.apple.screensaver idleTime -int 300
 sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
 sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool false

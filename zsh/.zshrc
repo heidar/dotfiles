@@ -61,3 +61,8 @@ eval "$(direnv hook zsh)"
 # Starship prompt
 ##############################
 eval "$(starship init zsh)"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/heidar/.lmstudio/bin"
+# End of LM Studio CLI section
+

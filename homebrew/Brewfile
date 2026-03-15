@@ -39,6 +39,7 @@ cask "font-monaspice-nerd-font"
 # GUI / Cask Apps
 ##############################
 cask "1password"
+cask "1password-cli"
 cask "appflowy"
 cask "ungoogled-chromium"
 cask "discord"

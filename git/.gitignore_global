@@ -3,8 +3,7 @@
 .AppleDouble
 
 # Editors
-.idea/
-.vscode/
+.zed/
 *.swp
 *.swo
 
