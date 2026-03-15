@@ -62,6 +62,15 @@ defaults write com.apple.screencapture disable-shadow -bool true
 defaults write com.apple.ClipboardHistoryLogging enable -bool true
 
 ##############################
+# Hostname
+##############################
+echo "  -> Setting hostname..."
+sudo scutil --set ComputerName  "miso"
+sudo scutil --set HostName      "miso"
+sudo scutil --set LocalHostName "miso"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "miso"
+
+##############################
 # Sharing & Connectivity
 ##############################
 echo "  -> Sharing & connectivity..."
