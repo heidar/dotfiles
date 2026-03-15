@@ -1,0 +1,34 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "tab_size": 2,
+  "search": {
+    "center_on_match": true
+  },
+  "use_smartcase_search": true,
+  "cursor_blink": false,
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true
+  },
+  "autosave": "on_focus_change",
+  "buffer_font_family": "MonaspiceNe Nerd Font",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 15.0,
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha"
+  }
+}
