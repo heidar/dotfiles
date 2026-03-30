@@ -1,6 +1,11 @@
 #!/usr/bin/env zsh
 
 ##############################
+# Keybinding mode emacs
+##############################
+bindkey -e
+
+##############################
 # PATH
 ##############################
 export PATH="$HOME/.local/bin:$PATH"
