@@ -8,10 +8,15 @@
   <array>
     <string>/bin/bash</string>
     <string>-c</string>
-    <string>brew update &amp;&amp; brew upgrade &amp;&amp; brew cleanup &amp;&amp; mise upgrade &amp;&amp; antidote update</string>
+    <string>/opt/homebrew/bin/brew update &amp;&amp; /opt/homebrew/bin/brew upgrade &amp;&amp; /opt/homebrew/bin/brew cleanup &amp;&amp; /opt/homebrew/bin/mise upgrade &amp;&amp; /bin/zsh -c 'eval "$(/opt/homebrew/bin/brew shellenv)" &amp;&amp; source "$(brew --prefix)/opt/antidote/share/antidote/antidote.zsh" &amp;&amp; antidote update'</string>
   </array>
-  <key>StartInterval</key>
-  <integer>86400</integer>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>3</integer>
+    <key>Minute</key>
+    <integer>0</integer>
+  </dict>
   <key>StandardOutPath</key>
   <string>/tmp/brew-maint.log</string>
   <key>StandardErrorPath</key>
