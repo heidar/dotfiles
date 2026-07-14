@@ -13,7 +13,7 @@ window-padding-y = 8
 # QoL
 mouse-hide-while-typing = true
 confirm-close-surface = true
-scrollback-limit = 10000
+scrollback-limit = 100000000
 shell-integration = detect
 
 # Security / Privacy
